@@ -1,1 +1,1 @@
-__webpack_public_path__ = window.bvaccel.assetCDN;
+__webpack_public_path__ = window.shop.assetCDN;

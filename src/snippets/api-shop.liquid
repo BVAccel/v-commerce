@@ -1,0 +1,8 @@
+<script type="text/javascript">
+  window.shop = {
+    assetCDN: "{{- 'loader.gif' | asset_url | split: 'loader.gif?' | first -}}",
+    fileCDN: "{{- '' | file_url | split: '?' | first -}}"
+  }
+  window.Shopify = window.Shopify || {};
+  window.Shopify.template = "{{- template -}}";
+</script>

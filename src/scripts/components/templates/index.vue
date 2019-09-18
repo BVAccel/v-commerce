@@ -2,6 +2,7 @@
 <template>
   <div>
     <h2>Index</h2>
+    <slot></slot>
   </div>
 </template>
 
@@ -11,7 +12,7 @@
 // JavaScript
 <script>
 export default {
-  name: 'index-template',
+  name: 'index',
   props: {},
   data: function() {
     return {};

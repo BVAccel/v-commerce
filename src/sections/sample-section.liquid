@@ -1,0 +1,26 @@
+<section style="padding: 200px; text-align: center; background-image: url({{ section.settings.image | img_url: 'master' }})">
+  <h2>{{- section.settings.title -}}</h2>
+</section>
+{% schema %}
+{
+  "name": "Sample Section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title"
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Image"
+    }
+  ],
+  "presets": [
+    {
+      "category": "Sample",
+      "name": "Section"
+    }
+  ]
+}
+{% endschema %}

@@ -1,8 +1,7 @@
 // template
 <template>
   <div>
-    <h2>PRODUCT</h2>
-    <slot name="product-reviews"></slot>
+    <h2>Blog</h2>
   </div>
 </template>
 
@@ -12,7 +11,7 @@
 // JavaScript
 <script>
 export default {
-  name: 'product',
+  name: 'blog',
   props: {},
   data: function() {
     return {};
@@ -20,7 +19,7 @@ export default {
   components: {},
   methods: {},
   created: function() {
-    console.log('[Vue] Template: Product');
+    console.log('[Vue] Template: Blog');
   },
 };
 </script>

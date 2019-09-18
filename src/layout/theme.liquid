@@ -47,15 +47,19 @@
         <ul>
           <li><a href="/">Home</a></li>
           <li><a href="/products/blacktop">Product</a></li>
+          <li><a href="/collections/sunglasses">Collection</a></li>
+          <li><a href="/cart">Cart</a></li>
+          <li><a href="/blogs/news">Blog</a></li>
+          <li><a href="/blogs/news/protect-parties-in-the-hollywood-hills">Article</a></li>
+          <li><a href="/pages/contact-us">Page</a></li>
+          <li><a href="/search">Search</a></li>
+          <li><a href="/404">404</a></li>
         </ul>
       </nav>
     </header>
 
     <main role="main" id="MainContent">
-      <div id="app">
-        <theme-template />
-      </div>
-      {% comment %}{{ content_for_layout }}{% endcomment %}
+      <div id="app">{{ content_for_layout }}</div>
     </main>
 
 

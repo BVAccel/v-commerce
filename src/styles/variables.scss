@@ -1,0 +1,124 @@
+
+// ---------------------------------
+//   Colors
+// ---------------------------------
+
+// color pallette
+$color-white: #fff;
+$color-off-white: #f8f8f8;
+$color-light-grey: #ccc;
+$color-lead: #939393;
+$color-charcoal: #666;
+$color-dark-grey: #2c2c2c;
+$color-black: #000;
+
+$color-red: #db162e;
+$color-light-red: #FBEFF3;
+
+$color-dark-green: #155724;
+$color-green: #5cdb16;
+$color-light-green: #d4edda;
+
+$color-gold: #cccc00;
+$color-orange: #db8a16;
+
+$color-transparent-black: rgba($color-black, 0.6);
+
+// ---------------------------------
+//   Color Usage
+// ---------------------------------
+
+$color--primary: $color-red;
+$color--primary--hover: darken($color--primary, 5%);
+$color--secondary: $color-off-white;
+$color--secondary--hover: darken($color--secondary, 5%);
+
+$color--accent: $color-orange;
+$color--disabled: $color-light-grey;
+$color--error: $color-red;
+$color--error-light: $color-light-red;
+$color--warning: $color-gold;
+$color--success: $color-green;
+$color--success-light: $color-light-green;
+$color--success-dark: $color-dark-green;
+
+// background colors
+$bg--main: $color-white;
+$bg--alt: $color-light-grey;
+$bg--light: $color-off-white;
+$bg--dark: $color-black;
+$bg--overlay: $color-transparent-black;
+
+// borders
+$border--main: $color-charcoal;
+$border--light: $color-light-grey;
+$border--dark: rgba($color-black, 0.15);
+$border--input: $color-lead;
+
+// shadows
+$drop-shadow: 0 3px 8px rgba($color-black, 0.1);
+$drop-shadow--light: 0 3px 8px rgba($color-black, 0.05);
+
+// forms
+$form-field--neutral: $color-light-grey;
+$form-field--focus: darken($color--secondary, 5%);
+$form-field--error: $color--error;
+$form-field--warning: $color--warning;
+
+// typography
+$text--main: $color-black;
+$text--dark: $color-dark-grey;
+$text--mid: $color-charcoal;
+$text--light: $color-white;
+$text--accent: $color-orange;
+$text--completed: $color-light-grey;
+$text--subtitle: $color-light-grey;
+
+// ---------------------------------
+//   Type
+// ---------------------------------
+
+// fonts
+$font-header--main: Arial, sans-serif;
+$font-body--main: Arial, sans-serif;
+
+$navbar-text--link: $text--accent;
+
+$content-gutter: 1rem;
+
+// font size
+$h1-size: 32;
+$h2-size: 24;
+$h3-size: 18.72;
+$h4-size: 16;
+$h5-size: 13.28;
+$h6-size: 10.72;
+
+// ---------------------------------
+//   Document
+// ---------------------------------
+
+// media queries
+$breakpoint-tablet: 768px;
+$breakpoint-desktop: 1024px;
+$breakpoint-hd: 1280px;
+
+// grid
+$grid-gutter: 30px;
+$grid-column-count: 12;
+$block-grid-column-count: 8;
+
+$container-max-width: $breakpoint-hd;
+
+// header
+$mobile-nav-height: 72px;
+
+// ---------------------------------
+//   Exports
+// ---------------------------------
+
+:export {
+  breakTablet: $breakpoint-tablet;
+  breakDesktop: $breakpoint-desktop;
+  breakHd: $breakpoint-hd;
+}

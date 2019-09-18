@@ -1,0 +1,215 @@
+
+.input {
+  [type='text'],
+  [type='password'],
+  [type='date'],
+  [type='datetime'],
+  [type='datetime-local'],
+  [type='month'],
+  [type='week'],
+  [type='email'],
+  [type='number'],
+  [type='search'],
+  [type='tel'],
+  [type='time'],
+  [type='url'],
+  [type='color'],
+  textarea {
+    font-size: rem(16);
+    line-height: 1.25;
+    padding: 12px 18px;
+    background-color: $bg--main;
+    border: 1px solid $border--input;
+    border-radius: 6px;
+    margin: 0;
+    width: 100%;
+  }
+
+  &--text {
+    color: $text--main;
+    font-family: $font-body--main;
+    padding-right: 40px;
+    padding-top: 9px;
+    padding-bottom: 9px;
+    padding-left: 18px;
+    line-height: 20px;
+    border: 1px solid #909090;
+    border-radius: 5px;
+    transition: border-color 0.5s ease;
+
+    &:hover, &:active {
+      border-color: $color--primary;
+    }
+
+    &-error {
+      border-color: $color--error;
+      background-color: $color--error-light;
+    }
+  }
+
+  &--select {
+    position: relative;
+
+    > select {
+      // Resetting default styles across browsers...
+      display: inline-block;
+      background-color: transparent;
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      &::-ms-expand {
+        display: none;
+      }
+
+      // Custom styling
+      color: #031d3e;
+      font-family: $font-body--main;
+      padding-right: 40px;
+      padding-top: 12px;
+      padding-bottom: 12px;
+      padding-left: 18px;
+      width: 100%;
+      line-height: 20px;
+      border: 1px solid #909090;
+      border-radius: 5px;
+      transition: border-color 0.5s ease;
+
+      &:hover, &:active {
+        border-color: #031d3e;
+      }
+    }
+
+    > .icon {
+      position: absolute;
+      pointer-events: none;
+      top: 50%;
+      right: 14px;
+      transform: translateY(-50%);
+      fill: #909090;
+    }
+  }
+  
+  &--radio {
+    &:hover .input--radio__button {
+      border-color: $color-black;
+    }
+    
+    &__label {
+      cursor: pointer;
+      position: relative;
+      font-size: rem(16);
+      line-height: 20px; // match image height
+      
+      &__content {
+        padding-left: 35px;
+      }
+
+      input {
+        display: none;
+
+        &:checked + .input--radio__button {
+          border-color: $border--input;
+  
+          &:after {
+            opacity: 1;
+          }
+        }
+      }
+    }
+
+    &__button {
+      top: 1px;
+      left: 0;
+      height: 20px;
+      width: 20px;
+      border: 1px solid $border--input;
+      
+      &, &:after {
+        position: absolute;
+        display: block;
+        transition: 0.3s ease all;
+        border-radius: 50%;
+      }
+      
+      &:after {
+        content: '';
+        height: 10px;
+        width: 10px;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background-color: $bg--dark;
+        opacity: 0;
+      }
+    }
+  }
+}
+
+.form-field {
+  margin: 0 0 16px;
+
+  @include tablet-up {
+    margin: 0 0 24px;
+  }
+
+  label {
+    color: $border--input;
+    display: inline-block;
+    font-size: rem(13);
+    font-weight: 600;
+    margin: 0 0 7px;
+  }
+}
+
+.form-field--address {
+  @include tablet-up {
+    width: calc(50% - 5px);
+  }
+}
+
+.form-link {
+  color: $color--primary;
+  text-decoration: underline;
+  
+  &:hover {
+    text-decoration: underline;
+  }
+
+  &:hover, &:active {
+    color: $text--main;
+  }
+}
+
+.form-success,
+div.errors {
+  border-width: 1px;
+  border-style: solid;
+  border-radius: 6px;
+  padding: 12px 18px;
+}
+
+.form-success {
+  background-color: $color--success-light;
+  border-color: $color--success-dark;
+  color: $color--success-dark;
+}
+
+div.errors {
+  background-color: $color--error-light;
+  border-color: $color--error;
+  color: $color--error;
+  margin-bottom: $content-gutter;
+
+  ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+
+    li {
+      padding: 0;
+
+      &:not(:last-child) {
+        margin-bottom: $content-gutter;
+      }
+    }
+  }
+}

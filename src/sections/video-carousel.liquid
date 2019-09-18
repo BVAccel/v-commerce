@@ -1,0 +1,89 @@
+
+{%- capture video_data -%}
+[
+  {%- for video in section.blocks -%}
+    {
+      "title": "{{ video.settings.title | escape }}",
+      "description": "{{ video.settings.description | escape }}",
+      "image": "{{ video.settings.placeholder_image | img_url: '567x319' }}",
+      "mobileImage": "{{ video.settings.placeholder_image | img_url: '314x176' }}",
+      "id": "{{ video.settings.video_id }}",
+      "overlayColor": "{{ video.settings.overlay_color }}",
+      "overlayOpacity": {{ video.settings.overlay_opacity }}
+    }{%- unless forloop.last -%},{%- endunless -%}
+  {%- endfor -%}
+]
+{%- endcapture -%}
+
+<div class="u-overflow-x-hidden">
+  <div class="container">
+    <video-carousel
+      {% if section.settings.title != blank %}title="{{ section.settings.title }}"{% endif %}
+      :videos="{{ video_data | escape }}">
+    </video-carousel>
+  </div>
+</div>
+
+{% schema %}
+  {
+    "name": "Video Carousel",
+    "settings": [
+      {
+        "type": "text",
+        "id": "title",
+        "label": "Title"
+      }
+    ],
+    "blocks": [
+      {
+        "type": "video",
+        "name": "Video",
+        "settings": [
+          { "type": "header", "content": "Video" },
+          {
+            "type": "text",
+            "id": "title",
+            "label": "Video title"
+          },
+          {
+            "type": "text",
+            "id": "description",
+            "label": "Description"
+          },
+          {
+            "type": "text",
+            "id": "video_id",
+            "label": "Video ID",
+            "info": "In the URL bar on a youtube video, the random-looking character string after '?v='"
+          },
+          {
+            "type": "image_picker",
+            "id": "placeholder_image",
+            "label": "Placeholder Image"
+          },
+          { "type": "header", "content": "Overlay" },
+          {
+            "label": "Color",
+            "id": "overlay_color",
+            "type": "color"
+          },
+          {
+            "label": "Opacity",
+            "id": "overlay_opacity",
+            "type": "range",
+            "min": 0,
+            "max": 1,
+            "step": 0.1,
+            "default": 0
+          }
+        ]
+      }
+    ],
+    "presets": [
+      {
+        "category": "Video",
+        "name": "Video Carousel"
+      }
+    ]
+  }
+{% endschema %}

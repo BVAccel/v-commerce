@@ -1,0 +1,13 @@
+
+{%- section 'product-header' -%}
+
+{%- include 'product-upsell' -%}
+
+{% comment %} Yotpo reviews widget {% endcomment %}
+<div class="yotpo yotpo-main-widget container"
+  data-product-id="{{ product.id }}"
+  data-name="{{ product.title | escape }}"
+  data-url="{{ shop.url }}{{ product.url }}"
+  data-image-url="{{ product.featured_image | product_img_url: "large" | replace: '?', '%3F' | replace: '&','%26'}}"
+  data-description="{{ product.description | escape }}">
+</div>

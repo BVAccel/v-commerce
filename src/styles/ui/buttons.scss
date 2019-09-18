@@ -1,0 +1,190 @@
+
+.button {
+  cursor: pointer;
+  display: inline-block;
+  text-align: center;
+  padding: 18px 24px;
+  background-color: $color--primary;
+  border-width: 0;
+  border-style: solid;
+  border-color: $color--primary;
+  transition: 0.3s ease all;
+  font-size: rem(16);
+  font-weight: bold;
+  line-height: 1.5;
+  letter-spacing: 2.5px;
+  text-decoration: none;
+  text-transform: uppercase;
+  white-space: nowrap;
+
+  &, &:hover {
+    color: $text--light;
+  }
+
+  &:hover {
+    background-color: $color--primary--hover;
+    border-color: $color--primary--hover;
+  }
+
+  span {
+    vertical-align: middle;
+  }
+
+  &--primary,
+  &--secondary {
+    .icon {
+      vertical-align: middle;
+      fill: $text--light;
+    }
+  }
+
+  &.button--hollow {
+    color: $color--primary;
+
+    &:hover {
+      color: $color--primary--hover;
+    }
+  }
+
+  &--secondary {
+    background-color: $color--secondary;
+    border-color: $color--secondary;
+
+    &:hover {
+      background-color: $color--secondary--hover;
+      border-color: $color--secondary--hover;
+    }
+
+    &.button--hollow {
+      color: $color--secondary;
+
+      &:hover {
+        color: $color--secondary--hover;
+      }
+    }
+  }
+
+  &--hollow {
+    border-width: 2px;
+    padding: 16px 22px;
+
+    &, &:hover {
+      background-color: transparent;
+    }
+  }
+  
+  &--simple {
+    color: $text--main;
+    letter-spacing: normal;
+    text-transform: none;
+    background: $bg--light;
+    border: 0;
+  }
+
+  &--small {
+    font-size: rem(12);
+    padding: 10px 16px;
+
+    &.button--hollow {
+      padding: 8px 14px;
+    }
+  }
+
+  &--full {
+    width: 100%;
+    position: relative;
+  
+    .icon {
+      position: absolute;
+      top: 50%;
+      left: 12px;
+      transform: translateY(-50%);
+      fill: $text--light;
+    } 
+  }
+
+  &--text {
+    color: $color--primary;
+    padding: 0;
+    letter-spacing: normal;
+
+    .icon {
+      fill: $color--primary;
+      vertical-align: middle;
+
+      &:not(:last-child) {
+        margin-right: 4px;
+      }
+
+      &:not(:first-child) {
+        margin-left: 4px;
+      }
+    }
+
+    &, &:hover {
+      background-color: transparent;
+    }
+
+    &:hover {
+      color: $color--primary--hover;
+
+      .icon {
+        fill: $color--primary--hover;
+      }
+    }
+  }
+
+  &:not(.button--icon) {
+    .icon {
+      margin-right: $grid-gutter / 2;
+    }
+  }
+
+  &--icon {
+    padding: 0;
+    line-height: 0;
+
+    .icon {
+      fill: $color-black;
+
+    }
+
+    &.u-icon-primary .icon {
+      fill: $color--primary;
+    }
+
+    &, &:hover {
+      background-color: transparent;
+    }
+
+    &:hover {
+      .icon {
+        fill: $color--primary;
+      }
+    }
+
+  }
+
+  &--inline {
+    padding-top: 12px;
+    padding-bottom: 12px;
+  }
+
+  &[disabled] {
+    cursor: unset;
+
+    &, &:hover {
+      color: $text--main;
+      border-color: $color--disabled;
+      background-color: $color--disabled;
+    }
+
+    &.button--hollow,
+    &.button--text {
+      &, &:hover {
+        background-color: transparent;
+        color: $color--disabled;
+      }
+    }
+  }
+}

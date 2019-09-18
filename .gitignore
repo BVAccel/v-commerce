@@ -1,0 +1,23 @@
+
+# Dependency directory
+# https://www.npmjs.org/doc/misc/npm-faq.html#should-i-check-my-node_modules-folder-into-git
+node_modules
+*.log
+package-json.lock
+
+# Build
+dist
+
+# User
+.DS_Store
+*.sublime-project
+*.sublime-workspace
+.vscode
+
+# Environment Variables
+.env
+.env.*
+config.yml
+
+# Shopify Theme & Section Settings
+settings_data.json

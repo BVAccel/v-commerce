@@ -1,0 +1,179 @@
+
+<div class="container">
+  {%- include 'content-blocks' -%}
+</div>
+
+{% schema %}
+  {
+    "name": "Home: Content Blocks",
+    "settings": [],
+    "blocks": [
+      {
+        "type": "basic",
+        "name": "Basic",
+        "settings": [
+          { "type": "header", "content": "Sizing" },
+          {
+            "label": "Width",
+            "id": "column_class",
+            "type": "select",
+            "options": [
+              { "value": "", "label": "100%" },
+              { "value": "medium-9", "label": "75%" },
+              { "value": "medium-8", "label": "66%" },
+              { "value": "medium-6", "label": "50%" },
+              { "value": "medium-4", "label": "33%" },
+              { "value": "medium-3", "label": "25%" }
+            ]
+          },
+          {
+            "label": "Minimum Height",
+            "id": "min_height",
+            "type": "range",
+            "min": 0,
+            "max": 1000,
+            "step": 10,
+            "unit": "px",
+            "default": 0,
+            "info": "Affects all blocks in the same row"
+          },
+          { "type": "header", "content": "Text Color" },
+          {
+            "label": "Subtitle Color",
+            "id": "subtitle_color",
+            "type": "color",
+            "default": "#cb411a"
+          },
+          {
+            "label": "Title Color",
+            "id": "title_color",
+            "type": "color",
+            "default": "#031D3F"
+          },
+          {
+            "label": "Description Color",
+            "id": "text_color",
+            "type": "color",
+            "default": "#031D3F"
+          },
+          { "type": "header", "content": "Background" },
+          {
+            "label": "Background Color",
+            "id": "background_color",
+            "type": "color",
+            "default": "#F8F8F8"
+          },
+          {
+            "label": "Background Image",
+            "id": "background_image",
+            "type": "image_picker"
+          },
+          { "type": "header", "content": "Content" },
+          {
+            "label": "Title",
+            "id": "title",
+            "type": "text"
+          },
+          {
+            "label": "Subtitle",
+            "id": "subtitle",
+            "type": "text"
+          },
+          {
+            "label": "Description",
+            "id": "description",
+            "type": "richtext"
+          },
+          { "type": "header", "content": "CTA" },
+          {
+            "label": "Label",
+            "id": "cta_label",
+            "type": "text"
+          },
+          {
+            "label": "Link",
+            "id": "cta_link",
+            "type": "url"
+          },
+          { "type": "header", "content": "Overlay" },
+          {
+            "label": "Color",
+            "id": "overlay_color",
+            "type": "color"
+          },
+          {
+            "label": "Opacity",
+            "id": "overlay_opacity",
+            "type": "range",
+            "min": 0,
+            "max": 1,
+            "step": 0.1,
+            "default": 0
+          }
+        ]
+      },
+      {
+        "type": "image",
+        "name": "Image",
+        "settings": [
+          { "type": "header", "content": "Sizing" },
+          {
+            "label": "Width",
+            "id": "column_class",
+            "type": "select",
+            "options": [
+              { "value": "", "label": "100%" },
+              { "value": "medium-9", "label": "75%" },
+              { "value": "medium-8", "label": "66%" },
+              { "value": "medium-6", "label": "50%" },
+              { "value": "medium-4", "label": "33%" },
+              { "value": "medium-3", "label": "25%" }
+            ]
+          },
+          {
+            "label": "Minimum Height",
+            "id": "min_height",
+            "type": "range",
+            "min": 0,
+            "max": 1000,
+            "step": 10,
+            "unit": "px",
+            "default": 400,
+            "info": "Affects all blocks in the same row"
+          },
+          { "type": "header", "content": "Background" },
+          {
+            "label": "Background Color",
+            "id": "background_color",
+            "type": "color",
+            "default": "#FFFFFF"
+          },
+          {
+            "label": "Background Image",
+            "id": "background_image",
+            "type": "image_picker"
+          },
+          { "type": "header", "content": "Color Overlay" },
+          {
+            "label": "Color",
+            "id": "overlay_color",
+            "type": "color"
+          },
+          {
+            "label": "Opacity",
+            "id": "overlay_opacity",
+            "type": "range",
+            "min": 0,
+            "max": 1,
+            "step": 0.1,
+            "default": 0
+          }
+        ]
+      }
+    ],
+    "presets": [{
+      "name": "Content Blocks",
+      "category": "Generic"
+    }]
+  }
+{% endschema %}

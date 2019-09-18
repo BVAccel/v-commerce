@@ -1,0 +1,121 @@
+
+{%- capture copyright_text -%}
+  &copy; {{ 'now' | date: "%Y" }} {{ shop.name }}, All Rights Reserved
+{%- endcapture -%}
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer__header">
+      <div class="footer__header__left">
+        <img class="footer__logo" src="{{ section.settings.logo | img_url: '276x72' }}" alt="{{ shop.name }}" />
+        <p class="footer__copyright u-hidden-mobile-only">{{ copyright_text }}</p>
+      </div>
+      <div class="footer__header__right">
+        <ul class="u-list-inline footer__social-links">
+          {%- for block in section.blocks -%}
+            {%- if block.type == 'social' -%}
+              {%- assign link_key = 'social_' | append: block.settings.title | append: '_link' -%}
+              <li class="footer__social-links__link">
+                <icon-link 
+                  icon="{{ block.settings.title }}" 
+                  href="{{ settings[link_key] }}" 
+                  label="{{ block.settings.title }}">
+                </icon-link>
+              </li>
+            {%- endif -%}
+          {%- endfor -%}
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer__content">
+      <accordion-group v-if="$mq === 'mobile'" class="footer__accordions">
+        {%- for i in (1..4) -%}
+          {%- assign linklist_id = 'linklist_' | append: i -%}
+          {%- if section.settings[linklist_id] != blamk -%}
+            <accordion 
+              theme="footer"
+              heading="{{ linklists[section.settings[linklist_id]].title }}" 
+              active-icon="chevron-up" 
+              inactive-icon="chevron-down">
+                {%- include 'footer-linklist', list: section.settings[linklist_id] -%}
+            </accordion>
+          {%- endif -%}
+        {%- endfor -%}
+      </accordion-group>
+
+      <div class="footer__links" v-else>
+        {%- for i in (1..4) -%}
+          {%- assign linklist_id = 'linklist_' | append: i -%}
+          {%- if section.settings[linklist_id] != blamk -%}
+            <div class="footer__links__section">
+              <h3 class="footer__links__header">{{ linklists[section.settings[linklist_id]].title }}</h3>
+              {%- include 'footer-linklist', list: section.settings[linklist_id] -%}
+            </div>
+          {%- endif -%}
+        {%- endfor -%}
+      </div>
+    </div>
+
+    <div class="footer__footer u-hidden-tablet-up">{{ copyright_text }}</div>
+  </div>
+</footer>
+
+{% schema %}
+  {
+    "name": "Footer",
+    "settings": [
+      { "type": "header", "content": "Content" },
+      {
+        "type": "image_picker",
+        "id": "logo",
+        "label": "Logo Image"
+      },
+      { "type": "header", "content": "Links" },
+      {
+        "type": "link_list",
+        "id": "linklist_1",
+        "label": "Linklist 1"
+      },
+      {
+        "type": "link_list",
+        "id": "linklist_2",
+        "label": "Linklist 2"
+      },
+      {
+        "type": "link_list",
+        "id": "linklist_3",
+        "label": "Linklist 3"
+      },
+      {
+        "type": "link_list",
+        "id": "linklist_4",
+        "label": "Linklist 4"
+      }
+    ],
+    "blocks": [
+      {
+        "type": "social",
+        "name": "Social Link",
+        "settings": [
+          {
+            "type": "select",
+            "id": "title",
+            "label": "text",
+            "options": [
+              { "value": "twitter", "label": "Twitter" },
+              { "value": "facebook", "label": "Facebook" },
+              { "value": "pinterest", "label": "Pinterest" },
+              { "value": "instagram", "label": "Instagram" },
+              { "value": "snapchat", "label": "Snapchat" },
+              { "value": "tumbler", "label": "Tumblr" },
+              { "value": "youtube", "label": "YouTube" },
+              { "value": "vimeo", "label": "Vimeo" }
+            ],
+            "info": "To configure the social link, click the back arrow above and use the 'Social Media' section under the 'Theme Settings' tab."
+          }
+        ]
+      }
+    ]
+  }
+{% endschema %}

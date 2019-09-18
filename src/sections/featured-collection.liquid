@@ -1,0 +1,43 @@
+
+<div class="container">
+  {%-
+    include 'product-carousel',
+    title: section.settings.title,
+    collection_handle: section.settings.collection,
+    enable_carousel: section.settings.enable_carousel
+  -%}
+</div>
+
+{% schema %}
+  {
+    "name": "Featured Collection",
+    "class": "featured-collection-section",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Content"
+      },
+      {
+        "type": "text",
+        "id": "title",
+        "label": "Heading",
+        "default": "Products"
+      },
+      {
+        "type": "header",
+        "content": "Products"
+      },
+      {
+        "id": "collection",
+        "type": "collection",
+        "label": "Collection"
+      }
+    ],
+    "presets": [
+      {
+        "name": "Featured Collection",
+        "category": "Collection"
+      }
+    ]
+  }
+{% endschema %}

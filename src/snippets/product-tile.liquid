@@ -1,0 +1,10 @@
+
+<product-tile
+  title="{{ product.title }}"
+  url="{{ product.url | within: collection }}"
+  image="{{ product.featured_image | img_url: '229x294' }}"
+  hover-image="{% if product.images[1] %}{{ product.images[1] | img_url: '229x294' }}{% endif %}"
+  image-alt="{{ product.images[0].alt }}"
+  :price="{{ product.price }}"
+  :remaining-quantity="{{ product.variants[0].inventory_quantity }}" >
+</product-tile>

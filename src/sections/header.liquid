@@ -1,0 +1,72 @@
+
+{%- capture nav_links -%}
+  {%- include 'json--linklist', linklist: linklists[section.settings.menu].links -%}
+{%- endcapture -%}
+
+{%- capture suggested_searches -%}
+  {%- assign suggested_arr = section.settings.suggested_searches | split: ',' -%}
+  [
+    {%- for suggestion in suggested_arr -%}
+      "{{ suggestion | strip }}"{%- unless forloop.last -%},{%- endunless -%}
+    {%- endfor -%}
+  ]
+{%- endcapture -%}
+
+<navbar
+  logo="{{ section.settings.logo | img_url: '200x' }}"
+  logo-large="{{ section.settings.logo | img_url: '200x', scale: 2 }}"
+  shop-name="{{ shop.name }}"
+  :h1="{% if template.name == 'index' %}true{% else %}false{% endif %}"
+  :links="{{ nav_links | escape }}"
+  :logged-in="{% if customer %}true{% else %}false{% endif %}"
+  :suggested-searches="{{ suggested_searches | escape }}">
+  {% comment %} Start SEO Rendering {% endcomment %}
+  {%- if template.name == 'index' -%}<h1>{%- else -%}<div class="h1">{%- endif -%}
+    <a href="/">{{ shop.name }}</a>
+  {%- if template.name == 'index' -%}</h1>{%- else -%}</div>{%- endif -%}
+  <ul>
+    {%- for link in linklists[section.settings.menu].links -%}
+      <li>
+        {%- assign list_handle = link.title | handleize -%}
+        {%- assign child_list = linklists[list_handle] -%}
+        <a href="{{ link.url }}">{{ link.title }}</a>
+        {%- if child_list != blank -%}
+          <ul>
+            {%- for link in linklists[child_list].links -%}
+              <li><a href="{{ link.url }}">{{ link.title }}</a></li>
+            {%- endfor -%}
+          </ul>  
+        {%- endif -%}
+      </li>
+    {%- endfor -%}
+  </ul>
+  {% comment %} End SEO Rendering {% endcomment %}
+</navbar>
+
+{% schema %}
+  {
+    "name": "Main Navigation",
+    "settings": [
+      { "type": "header", "content": "Logo" },
+      {
+        "type": "image_picker",
+        "id": "logo",
+        "label": "Logo image"
+      },
+      { "type": "header", "content": "Links" },
+      {
+        "type": "link_list",
+        "id": "menu",
+        "label": "Collections",
+        "default": "main-menu"
+      },
+      { "type": "header", "content": "Search" },
+      {
+        "type": "text",
+        "id": "suggested_searches",
+        "label": "Search Suggestions",
+        "info": "Comma separated list of suggestions"
+      }
+    ]
+  }
+{% endschema %}

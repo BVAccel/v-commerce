@@ -1,7 +1,6 @@
 // template
 <template>
   <div>
-    <h2>Index</h2>
     <slot></slot>
   </div>
 </template>

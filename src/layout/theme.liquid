@@ -69,10 +69,10 @@
     {% comment %}{{ 'main.js' | asset_url | script_tag }}{% endcomment %}
 
     <script type="text/javascript" src="{{ 'layout.theme.js' | asset_url }}" defer="defer"></script>
-    {% comment %}{% if template %}
+    {% if template %}
       {%- assign template_script = 'templates.' | append: template | append: '.js' -%}
       <script type="text/javascript" src="{{ template_script | asset_url }}" defer="defer"></script>
-    {% endif %}{% endcomment %}
+    {% endif %}
     
   </body>
 </html>

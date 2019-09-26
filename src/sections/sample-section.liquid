@@ -1,6 +1,6 @@
-<section style="padding: 200px; text-align: center; background-image: url({{ section.settings.image | img_url: 'master' }})">
-  <h2>{{- section.settings.title -}}</h2>
-</section>
+<sample-section data-v-component
+:settings='{{ section.settings | json }}'>
+</sample-section>
 {% schema %}
 {
   "name": "Sample Section",
@@ -9,6 +9,23 @@
       "type": "text",
       "id": "title",
       "label": "Title"
+    },
+    {
+      "type": "select",
+      "id": "title_position",
+      "label": "Title Position",
+      "options": [
+        { "value": "flex flex--top-left", "label": "Top Left" },
+        { "value": "flex flex--top-center", "label": "Top Center" },
+        { "value": "flex flex--top-right", "label": "Top Right" },
+        { "value": "flex flex--mid-left", "label": "Mid Left" },
+        { "value": "flex flex--mid-center", "label": "Mid Center" },
+        { "value": "flex flex--mid-right", "label": "Mid Right" },
+        { "value": "flex flex--bottom-left", "label": "Bottom Left" },
+        { "value": "flex flex--bottom-center", "label": "Bottom Center" },
+        { "value": "flex flex--bottom-right", "label": "Bottom Right" }
+      ],
+      "default": "flex flex--mid-center"
     },
     {
       "type": "image_picker",

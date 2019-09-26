@@ -65,7 +65,7 @@
 
     {%- include 'api-shop' -%}
     
-    {{ 'vendors-main.js' | asset_url | script_tag }}
+    {% comment %}{{ 'vendors-main.js' | asset_url | script_tag }}{% endcomment %}
     {% comment %}{{ 'main.js' | asset_url | script_tag }}{% endcomment %}
 
     <script type="text/javascript" src="{{ 'layout.theme.js' | asset_url }}" defer="defer"></script>

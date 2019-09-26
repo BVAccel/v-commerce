@@ -29,7 +29,8 @@ module.exports = (env) => ({
   output: {
     path: path.resolve(__dirname, 'dist/assets'),
     filename: '[name].js',
-    chunkFilename: '[name].chunk.[chunkhash:5].js',
+    // chunkFilename: '[name].chunk.[chunkhash:5].js',
+    chunkFilename: '[name].chunk.js',
   },
   module: {
     rules: [

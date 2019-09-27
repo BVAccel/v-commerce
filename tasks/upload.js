@@ -1,5 +1,5 @@
 var gulp = require('gulp');
-var shopify = require('gulp-shopify-upload-with-callbacks');
+var shopify = require('@bva/gulp-shopify-upload');
 var watch = require('gulp-watch');
 
 require('dotenv').config();

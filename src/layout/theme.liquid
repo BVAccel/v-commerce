@@ -42,25 +42,14 @@
   <body class="template-{{ template.name | handle }}">
     {%- include 'icon-store' -%}
 
-    <header>
-      <nav>
-        <ul>
-          <li><a href="/">Home</a></li>
-          <li><a href="/products/blacktop">Product</a></li>
-          <li><a href="/collections/sunglasses">Collection</a></li>
-          <li><a href="/cart">Cart</a></li>
-          <li><a href="/blogs/news">Blog</a></li>
-          <li><a href="/blogs/news/protect-parties-in-the-hollywood-hills">Article</a></li>
-          <li><a href="/pages/contact-us">Page</a></li>
-          <li><a href="/search">Search</a></li>
-          <li><a href="/404">404</a></li>
-        </ul>
-      </nav>
-    </header>
-
-    <main role="main" id="MainContent">
-      <div id="app">{{ content_for_layout }}</div>
-    </main>
+    <style type="text/css">[v-cloak] { opacity: 0; } </style>
+    <div id="app" v-cloak>
+      
+      <global-nav></global-nav>
+      <main role="main" id="MainContent">
+        {{ content_for_layout }}
+      </main>
+    </div>
 
 
     {%- include 'api-shop' -%}

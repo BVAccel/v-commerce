@@ -39,28 +39,27 @@
 
   </head>
 
-  <body class="template-{{ template.name | handle }}">
+  <body class="template-{{- template.name | handle -}}">
     {%- include 'icon-store' -%}
 
-    <style type="text/css">[v-cloak] { opacity: 0; } </style>
+    <style type="text/css">[v-cloak] { opacity: 0; }</style>
+
     <div id="app" v-cloak>
-      
+
       <global-nav></global-nav>
+
       <main role="main" id="MainContent">
         {{ content_for_layout }}
       </main>
-    </div>
 
+    </div>
 
     {%- include 'api-shop' -%}
     
-    {% comment %}{{ 'vendors-main.js' | asset_url | script_tag }}{% endcomment %}
-    {% comment %}{{ 'main.js' | asset_url | script_tag }}{% endcomment %}
-
-    <script type="text/javascript" src="{{ 'layout.theme.js' | asset_url }}" defer="defer"></script>
+    <script type="text/javascript" src="{{- 'layout.theme.js' | asset_url -}}" defer="defer"></script>
     {% if template %}
       {%- assign template_script = 'templates.' | append: template | append: '.js' -%}
-      <script type="text/javascript" src="{{ template_script | asset_url }}" defer="defer"></script>
+      <script type="text/javascript" src="{{- template_script | asset_url -}}" defer="defer"></script>
     {% endif %}
     
   </body>

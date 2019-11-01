@@ -79,7 +79,7 @@ const gatherDynamicHomepageSections = () => {
     return Array.from(vueComponents).reduce((comps, element) => {
       const vueComponentTag = element.getAttribute('data-v-component') || element.tagName.toLowerCase();
       if (!comps.hasOwnProperty(vueComponentTag)) {
-        comps[vueComponentTag] = () => import(`scripts/components/dynamic/${vueComponentTag}.vue`);
+        comps[vueComponentTag] = () => import(/* webpackChunkName: 'index-[request]' */ `scripts/components/dynamic/${vueComponentTag}.vue`);
       }
       return comps;
     }, {});

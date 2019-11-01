@@ -23,9 +23,7 @@ export default {
   name: 'GlobalNav',
   props: {},
   methods: {},
-  created() {
-    console.log('Global Nav Created!');
-  },
+  created() {},
 };
 </script>
 

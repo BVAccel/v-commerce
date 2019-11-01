@@ -34,8 +34,7 @@
 
     {{ content_for_header }}
 
-    {{ 'bvaccel.css' | asset_url | stylesheet_tag }}
-    {% comment %}{{ 'bvaccel-app.css' | asset_url | stylesheet_tag }}{% endcomment %}
+    {%- include 'style-tags' -%}
 
   </head>
 
@@ -51,11 +50,7 @@
       </main>
     </div>
 
-
     {%- include 'api-shop' -%}
-    
-    {% comment %}{{ 'vendors-main.js' | asset_url | script_tag }}{% endcomment %}
-    {% comment %}{{ 'main.js' | asset_url | script_tag }}{% endcomment %}
 
     <script type="text/javascript" src="{{ 'layout.theme.js' | asset_url }}" defer="defer"></script>
     {% if template %}

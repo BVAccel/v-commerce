@@ -1,32 +1,32 @@
 @charset 'UTF-8';
 
 // vendor
-@import "normalize.css/normalize";
+@import 'normalize.css/normalize';
 
 // Settings
-@import "./boilerplate";
+@import './boilerplate';
 
 // Core
-@import "core/forms";
-@import "core/grid";
-@import "core/layout";
-@import "core/media";
-@import "core/responsive-tables";
-@import "core/typography";
-@import "core/utility";
-@import "core/z-index";
+@import 'core/forms';
+@import 'core/grid';
+@import 'core/layout';
+@import 'core/media';
+@import 'core/responsive-tables';
+@import 'core/typography';
+@import 'core/utility';
+@import 'core/z-index';
 
-// UI Components
-@import "ui/buttons";
-@import "ui/featured-collection";
-@import "ui/footer";
+// // UI Components
+// @import "ui/buttons";
+// @import "ui/featured-collection";
+// @import "ui/footer";
 
-// Vue Transitions
-@import "transitions/fade";
-@import "transitions/off-canvas";
-@import "transitions/slide";
-@import "transitions/slide-fade";
+// // Vue Transitions
+// @import "transitions/fade";
+// @import "transitions/off-canvas";
+// @import "transitions/slide";
+// @import "transitions/slide-fade";
 
-// Sections
-@import "sections/content-blocks";
-@import "sections/product-icons";
+// // Sections
+// @import "sections/content-blocks";
+// @import "sections/product-icons";

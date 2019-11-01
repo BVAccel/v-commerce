@@ -10,6 +10,7 @@ var autoprefixer = require('autoprefixer');
 
 var globalStylesPath = 'src/styles/theme.scss';
 var templateStylesPath = 'src/styles/templates/**/index.scss';
+var templateCriticalStylesPath = 'src/styles/templates/**/critical.scss';
 var stylesDest = 'dist/assets';
 
 var sassSettings = {
@@ -18,7 +19,7 @@ var sassSettings = {
 
 gulp.task('styles:dev', function() {
   return gulp
-    .src([templateStylesPath, globalStylesPath])
+    .src([globalStylesPath, templateStylesPath, templateCriticalStylesPath])
     .pipe(sourcemaps.init())
     .pipe(sass(sassSettings).on('error', sass.logError))
     .pipe(postcss([autoprefixer()]))
@@ -26,9 +27,13 @@ gulp.task('styles:dev', function() {
     .pipe(sourcemaps.write())
     .pipe(
       rename(function(file) {
-        file.extname = '.scss.liquid';
+        file.extname = '.css.liquid';
         if (file.dirname !== '.') {
-          file.basename = `template.${file.dirname}`;
+          if (file.basename === 'critical') {
+            file.basename = `template.critical.${file.dirname}`;
+          } else {
+            file.basename = `template.${file.dirname}`;
+          }
           file.dirname = '';
         }
         return file;
@@ -39,7 +44,7 @@ gulp.task('styles:dev', function() {
 
 gulp.task('styles:prod', function() {
   return gulp
-    .src([templateStylesPath, globalStylesPath])
+    .src([globalStylesPath, templateStylesPath, templateCriticalStylesPath])
     .pipe(sourcemaps.init())
     .pipe(sass(sassSettings).on('error', sass.logError))
     .pipe(postcss([autoprefixer()]))
@@ -48,9 +53,13 @@ gulp.task('styles:prod', function() {
     .pipe(sourcemaps.write())
     .pipe(
       rename(function(file) {
-        file.extname = '.scss.liquid';
+        file.extname = '.css.liquid';
         if (file.dirname !== '.') {
-          file.basename = `template.${file.dirname}`;
+          if (file.basename === 'critical') {
+            file.basename = `template.critical.${file.dirname}`;
+          } else {
+            file.basename = `template.${file.dirname}`;
+          }
           file.dirname = '';
         }
         return file;

@@ -1,1 +1,21 @@
 {{ content_for_index }}
+
+
+<section class="featured-products">
+  <div class="featured-products__container max-width-container">
+    <h2 class="featured-products__title">Featured Products</h2>
+    <div class="featured-products__grid">
+      {% for product in collections['all'].products limit: 4 %}
+        <div class="featured-product">
+          <div class="featured-product__container">
+            <div class="featured-product__image-wrapper">
+              <img class="featured-product__image" src="{{ product | img_url: '300x' }}" />
+            </div>
+            <p class="featured-product__title h5">{{ product.title }}</p>
+            <p class="featured-product__price">{{ product.price | money }}</p>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>

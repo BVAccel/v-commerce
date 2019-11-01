@@ -1,6 +1,6 @@
 // Template
 <template>
-  <section :class="settings.title_position">
+  <section :class="sectionClass">
     <picture>
       <img :src="settings.image" />
     </picture>
@@ -18,6 +18,11 @@ export default {
     },
   },
   methods: {},
+  computed: {
+    sectionClass() {
+      return `sample-section ${this.settings.title_position}`;
+    },
+  },
   created() {},
 };
 </script>

@@ -1,6 +1,6 @@
 const path = require('path');
 const VueLoaderPlugin = require('vue-loader/lib/plugin');
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+// const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 const glob = require('glob');
 const jsBundleTypes = ['layout', 'templates'];
@@ -40,7 +40,8 @@ module.exports = (env) => ({
       {
         test: /\.scss$/,
         use: [
-          env.mode === 'production' ? MiniCssExtractPlugin.loader : 'vue-style-loader',
+          // env.mode === 'production' ? MiniCssExtractPlugin.loader : 'vue-style-loader',
+          'vue-style-loader',
           'css-loader',
           {
             loader: 'sass-loader',

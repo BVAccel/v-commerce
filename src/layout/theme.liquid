@@ -34,9 +34,8 @@
 
     {{ content_for_header }}
 
-    {{ 'bvaccel.css' | asset_url | stylesheet_tag }}
-    {% comment %}{{ 'bvaccel-app.css' | asset_url | stylesheet_tag }}{% endcomment %}
-
+    {%- include 'script-tags' -%}
+    
   </head>
 
   <body class="template-{{- template.name | handle -}}">
@@ -55,12 +54,6 @@
     </div>
 
     {%- include 'api-shop' -%}
-    
-    <script type="text/javascript" src="{{- 'layout.theme.js' | asset_url -}}" defer="defer"></script>
-    {% if template %}
-      {%- assign template_script = 'templates.' | append: template | append: '.js' -%}
-      <script type="text/javascript" src="{{- template_script | asset_url -}}" defer="defer"></script>
-    {% endif %}
     
   </body>
 </html>

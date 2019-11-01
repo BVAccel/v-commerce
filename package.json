@@ -14,8 +14,7 @@
     "start": "gulp dev:deploy",
     "build": "gulp build:dev",
     "build:prod": "gulp build:prod",
-    "deploy:dev": "gulp deploy:dev",
-    "deploy:prod": "gulp deploy:prod"
+    "deploy:dev": "gulp deploy:dev"
   },
   "devDependencies": {
     "@bva/gulp-shopify-upload": "^2.5.0",

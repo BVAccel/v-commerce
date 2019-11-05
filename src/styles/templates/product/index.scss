@@ -1,5 +1,6 @@
 // Settings
-@import '../../boilerplate';
+@import '../../boilerplate.scss';
 .hello {
-  color: #fff;
+  color: $color-white;
+  border-color: transparent;
 }

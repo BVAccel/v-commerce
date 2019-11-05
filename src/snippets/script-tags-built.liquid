@@ -1,0 +1,5 @@
+<script type="text/javascript" src="{{- 'layout.theme.js' | asset_url -}}" defer="defer"></script>
+{%- if template -%}
+  {%- assign template_script = 'templates.' | append: template | append: '.js' -%}
+  <script type="text/javascript" src="{{- template_script | asset_url -}}" defer="defer"></script>
+{%- endif -%}

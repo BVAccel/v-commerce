@@ -1,8 +1,30 @@
-<link rel="stylesheet" type="text/css" href="{{- 'theme.css' | asset_url -}}" />
-{% if template %}
-  {%- assign template_critical_styles = 'template.critical.' | append: template | append: '.css' -%}
-  {%- assign template_styles = 'template.' | append: template | append: '.css' -%}
-  <link rel="stylesheet" type="text/css" href="{{- template_critical_styles | asset_url -}}" />
-  <link rel="preload" href="{{- template_styles | asset_url -}}" as="style" onload="this.onload=null;this.rel='stylesheet'">
-  <noscript><link rel="stylesheet" href="{{- template_styles | asset_url -}}"></noscript>
-{% endif %}
+{% for stylesheet in styles %}
+  {% if stylesheet.name == 'theme' -%}
+    <link rel="stylesheet" type="text/css" href="{% raw %}{{- 'theme.css' | asset_url -}}{% endraw %}" />
+  {% else -%}
+    {%- raw -%}
+    {% capture stylesheet_name %}{% endraw %}{{ stylesheet.name }}{% raw %}{% endcapture %}
+    {% if template == stylesheet_name %}
+    {%- endraw -%}
+      {% if stylesheet.critical %}
+      {%- assign template_critical_styles = 'template.critical.' | append: stylesheet.name | append: '.css' -%}
+      {%- assign template_styles = 'template.' | append: stylesheet.name | append: '.css' -%}
+      {%- raw -%}
+      {% capture template_critical_stylesheet %}{% endraw %}{{ template_critical_styles }}{% raw %}{% endcapture %}
+      {% capture template_stylesheet %}{% endraw %}{{ template_styles }}{% raw %}{% endcapture %}
+      {%- endraw -%}
+      <link rel="stylesheet" type="text/css" href="{% raw %}{{- template_critical_stylesheet | asset_url -}}{% endraw %}" />
+      <link rel="preload" href="{% raw %}{{- template_stylesheet | asset_url -}}{% endraw %}" as="style" onload="this.onload=null;this.rel='stylesheet'" />
+      {% else %}
+      {%- assign template_styles = 'template.' | append: stylesheet.name | append: '.css' -%}
+      {%- raw -%}
+      {% capture template_stylesheet %}{% endraw %}{{ template_styles }}{% raw %}{% endcapture %}
+      {%- endraw -%}
+
+      <link rel="stylesheet" type="text/css"  href="{% raw %}{{- template_stylesheet | asset_url -}}{% endraw %}" />
+      {% endif %}
+    {%- raw -%}
+    {% endif %}
+    {%- endraw -%}
+  {% endif -%}
+{% endfor %}

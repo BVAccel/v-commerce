@@ -4,7 +4,7 @@ var flatten = require('gulp-flatten');
 var changed = require('gulp-changed');
 var watch = require('gulp-watch');
 
-var paths = ['src/assets/**/*', 'src/config/**/*', 'src/layout/**/*', 'src/sections/**/*', 'src/snippets/**/*', 'src/templates/**/*'];
+var paths = ['src/assets/**/*', 'src/config/**/*', 'src/layout/**/*', 'src/sections/**/*', 'src/snippets/**/*', 'src/templates/**/*', '!src/snippets/style-tags.liquid', '!src/snippets/script-tags.liquid'];
 
 function isAccountTemplate(file) {
   return file.path.includes('templates/customers');

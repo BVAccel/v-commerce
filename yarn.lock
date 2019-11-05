@@ -32,6 +32,16 @@
     normalize-path "^2.0.1"
     through2 "^2.0.3"
 
+"@tuanpham-dev/gulp-liquidjs@^0.0.6":
+  version "0.0.6"
+  resolved "https://registry.yarnpkg.com/@tuanpham-dev/gulp-liquidjs/-/gulp-liquidjs-0.0.6.tgz#5195d3835dbe646901c27513fad856382fdd7817"
+  dependencies:
+    liquidjs "^8.2.3"
+    object-assign-deep "^0.4.0"
+    plugin-error "^1.0.1"
+    replace-ext "^1.0.0"
+    through2 "^3.0.1"
+
 "@types/babel-types@*", "@types/babel-types@^7.0.0":
   version "7.0.7"
   resolved "https://registry.yarnpkg.com/@types/babel-types/-/babel-types-7.0.7.tgz#667eb1640e8039436028055737d2b9986ee336e3"
@@ -3541,6 +3551,10 @@ liftoff@^3.1.0:
     rechoir "^0.6.2"
     resolve "^1.1.7"
 
+liquidjs@^8.2.3:
+  version "8.5.3"
+  resolved "https://registry.yarnpkg.com/liquidjs/-/liquidjs-8.5.3.tgz#ddf47712819900975343da10e695c75216329df7"
+
 load-json-file@^1.0.0:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/load-json-file/-/load-json-file-1.1.0.tgz#956905708d58b4bab4c2261b04f59f31c99374c0"
@@ -4213,6 +4227,10 @@ number-is-nan@^1.0.0:
 oauth-sign@~0.9.0:
   version "0.9.0"
   resolved "https://registry.yarnpkg.com/oauth-sign/-/oauth-sign-0.9.0.tgz#47a7b016baa68b5fa0ecf3dee08a85c679ac6455"
+
+object-assign-deep@^0.4.0:
+  version "0.4.0"
+  resolved "https://registry.yarnpkg.com/object-assign-deep/-/object-assign-deep-0.4.0.tgz#43505d3679abb9686ab359b97ac14cc837a9d143"
 
 object-assign@4.X, object-assign@^4.0.1, object-assign@^4.1.0, object-assign@^4.1.1:
   version "4.1.1"

@@ -18,28 +18,31 @@ var sassSettings = {
 };
 
 gulp.task('styles:dev', function() {
-  return gulp
-    .src([globalStylesPath, templateStylesPath, templateCriticalStylesPath])
-    .pipe(sourcemaps.init())
-    .pipe(sass(sassSettings).on('error', sass.logError))
-    .pipe(postcss([autoprefixer()]))
-    .pipe(cache('styles'))
-    .pipe(sourcemaps.write())
-    .pipe(
-      rename(function(file) {
-        file.extname = '.css.liquid';
-        if (file.dirname !== '.') {
-          if (file.basename === 'critical') {
-            file.basename = `template.critical.${file.dirname}`;
-          } else {
-            file.basename = `template.${file.dirname}`;
+  return (
+    gulp
+      // .src('src/styles/**/*.scss')
+      .src([globalStylesPath, templateStylesPath, templateCriticalStylesPath])
+      .pipe(sourcemaps.init())
+      .pipe(sass(sassSettings).on('error', sass.logError))
+      .pipe(postcss([autoprefixer()]))
+      .pipe(cache('styles'))
+      .pipe(sourcemaps.write())
+      .pipe(
+        rename(function(file) {
+          file.extname = '.css.liquid';
+          if (file.dirname !== '.') {
+            if (file.basename === 'critical') {
+              file.basename = `template.critical.${file.dirname}`;
+            } else {
+              file.basename = `template.${file.dirname}`;
+            }
+            file.dirname = '';
           }
-          file.dirname = '';
-        }
-        return file;
-      }),
-    )
-    .pipe(gulp.dest(stylesDest));
+          return file;
+        }),
+      )
+      .pipe(gulp.dest(stylesDest))
+  );
 });
 
 gulp.task('styles:prod', function() {

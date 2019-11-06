@@ -1,5 +1,23 @@
-<script type="text/javascript" src="{{- 'layout.theme.js' | asset_url -}}" defer="defer"></script>
-{%- if template -%}
-  {%- assign template_script = 'templates.' | append: template | append: '.js' -%}
-  <script type="text/javascript" src="{{- template_script | asset_url -}}" defer="defer"></script>
+{%- comment -%} EDIT WITH CAUTION {%- endcomment -%}
+{%- if scripts.size > 0 -%}
+  <!-- Script Tags -->
+  {% for script in scripts -%}
+    {% if script.name == 'theme' -%}
+    <script type="text/javascript" src="{%- raw -%}{{- 'layout.theme.js' | asset_url -}}{%- endraw -%}" defer="defer"></script>
+    {% else -%}
+      {%- raw -%}
+      {%- capture script_template_name -%}{% endraw %}{{ script.name }}{% raw %}{%- endcapture -%}
+      {%- if template == script_template_name -%}{%- endraw -%}
+      {% if true %}{% comment %} <<< Used For Formatting {% endcomment %}
+        {%- assign template_scripts_file = 'template.' | append: script.name | append: '.js' -%}
+        {%- raw -%}
+        {%- capture template_script -%}{% endraw %}{{ template_scripts_file }}{% raw %}{%- endcapture -%}
+        {%- endraw -%}
+        <script type="text/javascript" src="{%- raw -%}{{- template_script | asset_url -}}{%- endraw -%}" defer="defer"></script>
+      {%- endif -%}
+      {%- raw -%}
+      {%- endif -%}
+      {%- endraw -%}
+    {% endif -%}
+  {%- endfor -%}
 {%- endif -%}

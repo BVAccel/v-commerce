@@ -10,16 +10,16 @@ require('require-dir')('./tasks');
 gulp.task('build:files', gulp.series('clean:dist', 'copy', 'icons'));
 
 // build site
-gulp.task('build:dev', gulp.series('build:files', 'styles:dev', 'scripts:dev'));
+gulp.task('build:dev', gulp.series('build:files', 'styles:dev', 'scripts:dev', 'snippets'));
 
 // build site and minify js/css
-gulp.task('build:prod', gulp.series('build:files', 'styles:prod', 'scripts:prod'));
+gulp.task('build:prod', gulp.series('build:files', 'styles:prod', 'scripts:prod', 'snippets'));
 
 // deploy
 gulp.task('deploy:dev', gulp.series('build:dev', 'upload:deploy'));
 
 // watch
-gulp.task('watch', gulp.parallel('copy:watch', 'upload:watch', 'scripts:watch', 'styles:watch', 'icons:watch'));
+gulp.task('watch', gulp.parallel('copy:watch', 'upload:watch', 'scripts:watch', 'styles:watch', 'icons:watch', 'snippets:watch'));
 
 // ---------------
 // Dev Tasks

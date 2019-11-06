@@ -1,8 +1,0 @@
-<link rel="stylesheet" type="text/css" href="{{- 'theme.css' | asset_url -}}" />
-{% if template %}
-  {%- assign template_critical_styles = 'template.critical.' | append: template | append: '.css' -%}
-  {%- assign template_styles = 'template.' | append: template | append: '.css' -%}
-  <link rel="stylesheet" type="text/css" href="{{- template_critical_styles | asset_url -}}" />
-  <link rel="preload" href="{{- template_styles | asset_url -}}" as="style" onload="this.onload=null;this.rel='stylesheet'">
-  <noscript><link rel="stylesheet" href="{{- template_styles | asset_url -}}"></noscript>
-{% endif %}

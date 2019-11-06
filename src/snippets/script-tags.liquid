@@ -9,7 +9,7 @@
       {%- capture script_template_name -%}{% endraw %}{{ script.name }}{% raw %}{%- endcapture -%}
       {%- if template == script_template_name -%}{%- endraw -%}
       {% if true %}{% comment %} <<< Used For Formatting {% endcomment %}
-        {%- assign template_scripts_file = 'template.' | append: script.name | append: '.js' -%}
+        {%- assign template_scripts_file = 'templates.' | append: script.name | append: '.js' -%}
         {%- raw -%}
         {%- capture template_script -%}{% endraw %}{{ template_scripts_file }}{% raw %}{%- endcapture -%}
         {%- endraw -%}

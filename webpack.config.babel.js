@@ -7,12 +7,14 @@ const jsBundleTypes = ['layout', 'templates'];
 const entry = jsBundleTypes.reduce((entry, type) => {
   const filePaths = glob.sync(`./src/scripts/${type}/**/*.js`);
   filePaths.forEach((path) => {
-    // output: <type>.<name>.js - templates.product.js
+    // output: <type>.<name>.js - templates.product.js // templates.customers.account.js
     const name = path
       .split('/')
       .pop()
       .split('.')[0];
-    entry[`${type}.${name}`] = path;
+    const isCustomersDir = path.indexOf('customers') !== -1;
+    let filename = isCustomersDir ? `${type}.customers.${name}` : `${type}.${name}`;
+    entry[filename] = path;
   });
   return entry;
 }, {});
@@ -21,7 +23,6 @@ const entry = jsBundleTypes.reduce((entry, type) => {
 
 module.exports = (env) => ({
   mode: env.mode,
-  // entry: path.resolve(__dirname, "src/scripts/bvaccel.js"),
   entry,
   stats: {
     entrypoints: false,

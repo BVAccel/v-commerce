@@ -1,9 +1,8 @@
-
-# gulp-vue
+# v-commerce
 
 ## Project Setup
 
-gulp-vue uses yarn for dependency management, webpack for JavaScript compilation, and gulp for task orchestration.
+v-commerce uses yarn for dependency management, webpack for JavaScript compilation, and gulp for task orchestration.
 
 ```
 # install dependencies
@@ -13,8 +12,7 @@ yarn
 You will also need to set up a `.env` file in the root of the project. Copy and paste the following, and replace with your own credentials and theme ID:
 
 ```
-URL=gulp-vue.myshopify.com
-API_KEY=XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+URL=XXXXXXXX.myshopify.com
 PASSWORD=XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
 THEME_ID=XXXXXXXXXXX
 ```
@@ -37,3 +35,49 @@ A list of these tasks can be found in `package.json`. Watchers will automaticall
 
 `yarn deploy`
 ⋅⋅⋅Run the build tool and deploy all files to the theme in `.env`
+
+## Project Structure
+
+```
+├── .env
+├── .eslintignore
+├── .eslintrc
+├── .gitignore
+├── .prettierrc
+├── .stylelintrc
+├── gulpfile.js
+├── package.json
+├── public-path.js
+├── webpack.config.babel.js
+├── webpack.dev.js
+├── webpack.prod.js
+├── yarn.lock
+└── src/
+   ├── assets/
+        ├── fonts/
+        ├── images/
+        ├── scripts/
+        └── styles/
+   ├── config/
+   ├── icons/
+   ├── layout/
+   ├── locales/
+   ├── scripts/
+        ├── components/
+            ├── dynamic/
+            ├── global/
+            └── templates/
+        ├── filters/
+        ├── layout/
+            ├── theme.js
+            └── checkout.js
+        ├── lib/
+        ├── services/
+        ├── store/
+        └── templates/
+   ├── sections/
+   ├── snippets/
+   ├── styles/
+   └── templates/
+└── tasks/
+```

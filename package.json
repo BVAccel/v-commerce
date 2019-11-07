@@ -1,13 +1,13 @@
 {
-  "name": "starter-theme",
+  "name": "v-commerce",
   "version": "1.0.0-alpha.1",
   "private": true,
   "author": "BVA",
-  "description": "Custom theme for Bruno MD",
+  "description": "Custom shopify starter theme with Vue support",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/BVAccel/bruno-md"
+    "url": "https://github.com/BVAccel/v-commerce"
   },
   "scripts": {
     "watch": "gulp",

@@ -1,3 +1,7 @@
-.thing {
-  color: #fff;
-}
+@charset 'UTF-8';
+
+// vendor
+@import 'normalize.css/normalize';
+
+// Settings
+@import './boilerplate';

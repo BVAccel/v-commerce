@@ -3,14 +3,28 @@
   <!-- Style Tags -->
   {% for stylesheet in styles -%}
     {% if stylesheet.name == 'theme' -%}
-      <link rel="stylesheet" type="text/css" href="{% raw %}{{- 'theme.css' | asset_url -}}{% endraw %}" />
+      {%- raw -%}
+      {%- unless request.path contains 'checkout' -%}
+        {%- endraw -%}
+        <link rel="stylesheet" type="text/css"  href="{% raw %}{{- 'theme.css' | asset_url -}}{% endraw %}" />
+        {%- raw -%}
+      {%- endunless -%}
+      {%- endraw -%}
+    {% elsif stylesheet.name == 'checkout' -%}
+      {%- raw -%}
+      {%- if request.path contains 'checkout' -%}
+        {%- endraw -%}
+        <link rel="stylesheet" type="text/css"  href="{% raw %}{{- 'checkout.css' | asset_url -}}{% endraw %}" />
+        {%- raw -%}
+      {%- endif -%}
+      {%- endraw -%}
     {% else -%}
       {%- raw -%}
       {%- capture stylesheet_template_name -%}{% endraw %}{{ stylesheet.name }}{% raw %}{%- endcapture -%}
       {%- if template == stylesheet_template_name -%}{%- endraw -%}
         {% if stylesheet.critical %}
-        {%- assign template_critical_styles = 'template.critical.' | append: stylesheet.name | append: '.css' -%}
-        {%- assign template_styles = 'template.' | append: stylesheet.name | append: '.css' -%}
+        {%- assign template_critical_styles = 'template.critical.' | append: stylesheet.name | append: '.css' | replace: '/', '.' -%}
+        {%- assign template_styles = 'template.' | append: stylesheet.name | append: '.css' | replace: '/', '.' -%}
         {%- raw -%}
         {%- capture template_critical_stylesheet -%}{% endraw %}{{ template_critical_styles }}{% raw %}{%- endcapture -%}
         {%- capture template_stylesheet -%}{% endraw %}{{ template_styles }}{% raw %}{%- endcapture -%}
@@ -18,7 +32,7 @@
         <link rel="stylesheet" type="text/css" href="{% raw %}{{- template_critical_stylesheet | asset_url -}}{% endraw %}" />
         <link rel="preload" href="{% raw %}{{- template_stylesheet | asset_url -}}{% endraw %}" as="style" onload="this.onload=null;this.rel='stylesheet'" />
         {%- else %}
-        {%- assign template_styles = 'template.' | append: stylesheet.name | append: '.css' -%}
+        {%- assign template_styles = 'template.' | append: stylesheet.name | append: '.css' | replace: '/', '.' -%}
         {%- raw -%}
         {%- capture template_stylesheet -%}{% endraw %}{{ template_styles }}{% raw %}{%- endcapture -%}
         {%- endraw -%}

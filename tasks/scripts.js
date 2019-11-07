@@ -6,7 +6,7 @@ var webpack = require('webpack-stream');
 var webpackDev = require('../webpack.dev.js');
 var webpackProd = require('../webpack.prod.js');
 
-var scriptsPaths = ['src/scripts/templates/*.js', 'src/scripts/layout/*.js'];
+var scriptsPaths = ['src/scripts/templates/**/*.js', 'src/scripts/layout/*.js'];
 var scriptsDest = 'dist/assets';
 
 gulp.task('scripts:dev', function() {
@@ -16,7 +16,7 @@ gulp.task('scripts:dev', function() {
     .pipe(cache('scripts'))
     .pipe(
       rename(function(file) {
-        if (file.extname.indexOf('?')) file.extname = file.extname.split('?')[0];
+        if (file.extname.indexOf('?') !== -1) file.extname = file.extname.split('?')[0];
         return file;
       }),
     )
@@ -29,7 +29,7 @@ gulp.task('scripts:prod', function() {
     .pipe(webpack(webpackProd))
     .pipe(
       rename(function(file) {
-        if (file.extname.indexOf('?')) file.extname = file.extname.split('?')[0];
+        if (file.extname.indexOf('?') !== -1) file.extname = file.extname.split('?')[0];
         return file;
       }),
     )

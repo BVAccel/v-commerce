@@ -9,6 +9,7 @@ var postcss = require('gulp-postcss');
 var autoprefixer = require('autoprefixer');
 
 var globalStylesPath = 'src/styles/theme.scss';
+var globalStylesCheckoutPath = 'src/styles/checkout.scss';
 var templateStylesPath = 'src/styles/templates/**/index.scss';
 var templateCriticalStylesPath = 'src/styles/templates/**/critical.scss';
 var stylesDest = 'dist/assets';
@@ -18,36 +19,33 @@ var sassSettings = {
 };
 
 gulp.task('styles:dev', function() {
-  return (
-    gulp
-      // .src('src/styles/**/*.scss')
-      .src([globalStylesPath, templateStylesPath, templateCriticalStylesPath])
-      .pipe(sourcemaps.init())
-      .pipe(sass(sassSettings).on('error', sass.logError))
-      .pipe(postcss([autoprefixer()]))
-      .pipe(cache('styles'))
-      .pipe(sourcemaps.write())
-      .pipe(
-        rename(function(file) {
-          file.extname = '.css.liquid';
-          if (file.dirname !== '.') {
-            if (file.basename === 'critical') {
-              file.basename = `template.critical.${file.dirname}`;
-            } else {
-              file.basename = `template.${file.dirname}`;
-            }
-            file.dirname = '';
+  return gulp
+    .src([globalStylesPath, globalStylesCheckoutPath, templateStylesPath, templateCriticalStylesPath])
+    .pipe(sourcemaps.init())
+    .pipe(sass(sassSettings).on('error', sass.logError))
+    .pipe(postcss([autoprefixer()]))
+    .pipe(cache('styles'))
+    .pipe(sourcemaps.write())
+    .pipe(
+      rename(function(file) {
+        file.extname = '.css.liquid';
+        if (file.dirname !== '.') {
+          if (file.basename === 'critical') {
+            file.basename = `template.critical.${file.dirname.replace('/', '.')}`;
+          } else {
+            file.basename = `template.${file.dirname.replace('/', '.')}`;
           }
-          return file;
-        }),
-      )
-      .pipe(gulp.dest(stylesDest))
-  );
+          file.dirname = '';
+        }
+        return file;
+      }),
+    )
+    .pipe(gulp.dest(stylesDest));
 });
 
 gulp.task('styles:prod', function() {
   return gulp
-    .src([globalStylesPath, templateStylesPath, templateCriticalStylesPath])
+    .src([globalStylesPath, globalStylesCheckoutPath, templateStylesPath, templateCriticalStylesPath])
     .pipe(sourcemaps.init())
     .pipe(sass(sassSettings).on('error', sass.logError))
     .pipe(postcss([autoprefixer()]))
@@ -59,9 +57,9 @@ gulp.task('styles:prod', function() {
         file.extname = '.css.liquid';
         if (file.dirname !== '.') {
           if (file.basename === 'critical') {
-            file.basename = `template.critical.${file.dirname}`;
+            file.basename = `template.critical.${file.dirname.replace('/', '.')}`;
           } else {
-            file.basename = `template.${file.dirname}`;
+            file.basename = `template.${file.dirname.replace('/', '.')}`;
           }
           file.dirname = '';
         }

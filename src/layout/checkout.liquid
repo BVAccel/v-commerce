@@ -18,8 +18,9 @@
     {{ checkout_stylesheets }}
     {{ checkout_scripts }}
 
-    {% comment %} Custom styling {% endcomment %}
-    {{ 'custom-checkout.css' | asset_url | stylesheet_tag }}
+    {%- include 'style-tags' -%}
+    
+    {%- include 'script-tags' -%}
   </head>
   <body>
     {{ skip_to_content_link }}

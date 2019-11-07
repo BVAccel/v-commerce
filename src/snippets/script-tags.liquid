@@ -3,13 +3,27 @@
   <!-- Script Tags -->
   {% for script in scripts -%}
     {% if script.name == 'theme' -%}
-    <script type="text/javascript" src="{%- raw -%}{{- 'layout.theme.js' | asset_url -}}{%- endraw -%}" defer="defer"></script>
+      {%- raw -%}
+      {%- unless request.path contains 'checkout' -%}
+        {%- endraw -%}
+        <script type="text/javascript" src="{%- raw -%}{{- 'layout.theme.js' | asset_url -}}{%- endraw -%}" defer="defer"></script>
+        {%- raw -%}
+      {%- endunless -%}
+      {%- endraw -%}
+    {% elsif script.name == 'checkout' -%}
+      {%- raw -%}
+      {%- if request.path contains 'checkout' -%}
+        {%- endraw -%}
+        <script type="text/javascript" src="{%- raw -%}{{- 'layout.checkout.js' | asset_url -}}{%- endraw -%}" defer="defer"></script>
+        {%- raw -%}
+      {%- endif -%}
+      {%- endraw -%}
     {% else -%}
       {%- raw -%}
       {%- capture script_template_name -%}{% endraw %}{{ script.name }}{% raw %}{%- endcapture -%}
       {%- if template == script_template_name -%}{%- endraw -%}
       {% if true %}{% comment %} <<< Used For Formatting {% endcomment %}
-        {%- assign template_scripts_file = 'templates.' | append: script.name | append: '.js' -%}
+        {%- assign template_scripts_file = 'templates.' | append: script.name | append: '.js' | replace: '/', '.' -%}
         {%- raw -%}
         {%- capture template_script -%}{% endraw %}{{ template_scripts_file }}{% raw %}{%- endcapture -%}
         {%- endraw -%}

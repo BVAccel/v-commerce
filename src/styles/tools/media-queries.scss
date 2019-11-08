@@ -1,24 +1,73 @@
-
 @mixin mobile-only {
-  @media (max-width: $breakpoint-tablet - 1) { @content; }
+  @media (max-width: $breakpoint-tablet - 1) {
+    @content;
+  }
 }
 
 @mixin tablet-up {
-  @media (min-width: $breakpoint-tablet) { @content; }
+  @media (min-width: $breakpoint-tablet) {
+    @content;
+  }
 }
 
 @mixin tablet-only {
-  @media (min-width: $breakpoint-tablet) and (max-width: $breakpoint-desktop - 1) { @content; }
+  @media (min-width: $breakpoint-tablet) and (max-width: $breakpoint-desktop - 1) {
+    @content;
+  }
 }
 
 @mixin desktop-up {
-  @media (min-width: $breakpoint-desktop) { @content; }
+  @media (min-width: $breakpoint-desktop) {
+    @content;
+  }
 }
 
 @mixin desktop-only {
-  @media (min-width: $breakpoint-desktop) and (max-width: $breakpoint-hd - 1) { @content; }
+  @media (min-width: $breakpoint-desktop) and (max-width: $breakpoint-hd - 1) {
+    @content;
+  }
 }
 
 @mixin hd-up {
-  @media (min-width: $breakpoint-hd) { @content; }
+  @media (min-width: $breakpoint-hd) {
+    @content;
+  }
+}
+
+/**
+ *  Media query for breakpoint
+ *
+ *  Accepts:
+ *  - $value: {String||Number} Breakpoint name (list found in variables.scss)
+ *  - $direction: {String} direction of media query (default: 'min')
+ *
+ *  Usage:
+ *
+ *  .selector {
+ *    @include mq('xs') {
+ *      color: red;
+ *    }
+ *    @include mq(992px) {
+ *      color: green;
+ *    }
+ *  }
+ *
+ */
+
+@mixin mq($value, $direction: 'min') {
+  @if type-of($value) == number and unitless($value) {
+    $value: $value + 'px';
+  }
+
+  @if type-of($value) == string {
+    @each $breakpoint in $breakpoints {
+      @if index($breakpoint, $value) != null {
+        $value: nth($breakpoint, 1);
+      }
+    }
+  }
+
+  @media only screen and (#{$direction}-width: #{$value}) {
+    @content;
+  }
 }

@@ -13,6 +13,9 @@
             </div>
             <p class="featured-product__title h5">{{ product.title }}</p>
             <p class="featured-product__price">{{ product.price | money }}</p>
+            <test-button
+              :product="{{product | json | escape}}">
+            </test-button>
           </div>
         </div>
       {% endfor %}

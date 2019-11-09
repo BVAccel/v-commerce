@@ -53,8 +53,12 @@ let components = {
   'theme-template': () => import(/* webpackChunkName: '[request]' */ `scripts/components/templates/${window.Shopify.template}.vue`),
 };
 
+// TODO: create a global area to export dispatch connsts
+const Cart_init = 'cart/init'
+
 const initVueApp = (components) => {
   new Vue({
+    store,
     delimiters: ['${', '}'],
     components,
     computed: {
@@ -65,6 +69,8 @@ const initVueApp = (components) => {
     created() {
       console.log('[Vue] Mounted');
       console.log('[Vue] Active Components:', components);
+      // init cart store here for now.
+      this.$store.dispatch(Cart_init);
     },
   }).$mount('#app');
 };

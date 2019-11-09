@@ -1,6 +1,20 @@
 
-import axios from 'axios'
+import { CartService } from '../../services/cart.service';
 
+
+/**
+ * Fields
+ */
+const cartService = new CartService();
+
+/**
+ * Mutation Consts
+ */
+const SET_CHECKOUT = 'SET_CHECKOUT';
+const OPEN_SIDECART = 'OPEN_SIDECART';
+const CLOSE_SIDECART = 'CLOSE_SIDECART';
+
+// STATE
 const state = {
   checkout: {},
   sidecartOpen: false
@@ -20,77 +34,27 @@ const mutations = {
 
 const actions = {
   init ({ commit }) {
-    // forcing clean cart request for IE11
-    let timestamp = new Date().getTime()
-
-    axios.get(`/cart.js?q=${timestamp}`)
-      .then(response => commit('SET_CHECKOUT', response.data))
+    console.log("init cart state");
+    cartService.getCartData().then((resp) => {
+      commit(SET_CHECKOUT, resp.data);
+    });
   },
-  addItem ({ state, commit, dispatch }, { id, quantity, properties = {} }) {
-    return new Promise((resolve, reject) => {
-      let index = state.checkout.items.findIndex(item => item.id === id);
-      
-      if (index > -1) {
-        // update instead if the item is already in the cart
-        let updatedQuantity = state.checkout.items[index].quantity + parseInt(quantity, 10);
-
-        dispatch('updateItem', { line: index + 1, quantity: updatedQuantity })
-          .then(() => resolve())
-          .catch(err => reject(err))
-      } else {
-        // forcing clean cart request for IE11
-        let timestamp = new Date().getTime()
-
-        axios.post('/cart/add.js', { id, quantity, properties })
-          .then(() => axios.get(`/cart.js?q=${timestamp}`))
-          .then(response => {
-            commit('SET_CHECKOUT', response.data)
-            resolve()
-          })
-          .catch(err => {
-            console.log(err)
-            reject(new Error('Unable to add the item to your cart.'))
-          })
-      }
-    })
+  addItem ({ state, commit, dispatch }, { quantity,id,properties = {} }) {
+    cartService.addItem(quantity, id, properties).then((data) => commit(SET_CHECKOUT, data));
   },
-  updateItem ({ commit }, { line, quantity }) {
-    return new Promise((resolve, reject) => {
-      axios.post('/cart/change.js', { line, quantity })
-        .then(response => {
-          let item = response.data.items[line - 1]
-          
-          if (item && item.quantity < parseInt(quantity, 10)) {
-            this.dispatch('toast/send', {
-              text: `Could not add more ${item.title}s. They're all in your cart!`,
-              type: 'error'
-            }, { root: true })
-          }
-          
-          commit('SET_CHECKOUT', response.data)
-          resolve()
-        })
-        .catch(err => {
-          console.log(err)
-          reject(new Error('Unable to update the item in your cart.'))
-        })
-    })
+  updateItem ({ commit }, { id, quantity }) {
+    cartService.updateItem(quantity, id).then((data) => commit(SET_CHECKOUT, data));
   },
-  removeItem ({ commit }, line) {
-    return new Promise((resolve, reject) => {
-      axios.post('/cart/change.js', { line, quantity: 0 })
-        .then(response => {
-          commit('SET_CHECKOUT', response.data)
-          resolve();
-        })
-        .catch(err => {
-          console.log(err)
-          reject(new Error('Unable to remove the item from your cart.'))
-        })
-    })
+  removeItem({ commit }, id) {
+    const quantity = 0;
+    cartService.changeItem(quantity, id).then((data) => commit(SET_CHECKOUT, data));
   },
-  openSidecart: ({ commit }) => commit('OPEN_SIDECART'),
-  closeSidecart: ({ commit }) => commit('CLOSE_SIDECART')
+  openSidecart({ commit }){
+    commit(OPEN_SIDECART);
+  },
+  closeSidecart({ commit }){
+    commit(CLOSE_SIDECART);
+  }
 }
 
 export default { namespaced: true, state, mutations, actions }

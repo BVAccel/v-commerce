@@ -1,35 +1,43 @@
+import { CollectionService } from '../../services/collection.service';
 
-import axios from 'axios'
+/**
+ * Fields
+ */
+const collectionService = new CollectionService();
 
-import { parseDataForEditor } from 'scripts/lib/util.js'
+/**
+ * Mutation Consts
+ */
+const SET_COLLECTION = 'SET_COLLECTION';
 
-var fetching = []
-
+// STATE
 const state = {
-  all: []
+  currentCollection: [],
+  currentPage:1,
+  handle:String
 }
 
 const mutations = {
-  ADD_COLLECTION (state, collection) {
-    let index = state.all.find(c => c.id === c.id)
-
-    fetching.splice(fetching.indexOf(collection.handle), 1)
-    if (index > -1) {
-      state.all.splice(index, 1, collection)
-    } else {
-      state.all.push(collection)
-    }
+  SET_COLLECTION (state, collection) {
+    // let index = state.all.find(c => c.id === c.id)
+    // // fetching.splice(fetching.indexOf(collection.handle), 1)
+    // if (index > -1) {
+    //   state.all.splice(index, 1, collection)
+    // } else {
+    //   state.all.push(collection)
+    // }
   }
 }
 
 const actions = {
-  addCollection ({ commit }, handle) {
-    if (fetching.indexOf(handle) < 0) {
-      fetching.push(handle)
-      axios.get(`/collections/${handle}?view=json`)
-        .then(response => {
-          commit('ADD_COLLECTION', parseDataForEditor(response.data))
-        })
+  setCollection ({ commit }, handle) {
+    // check if current collection already fetched
+    if(state.handle != handle){
+      collectionService.getCollectionData(handle).then((resp)=>{
+        console.log('resp',resp);
+        // commit(SET_COLLECTION, response.data)
+      })
+
     }
   }
 }

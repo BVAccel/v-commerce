@@ -1,70 +1,59 @@
+import { ProductService } from '../../services/product.service';
 
-import axios from 'axios'
+/**
 
-import { parseDataForEditor } from 'scripts/lib/util.js'
+  PRODUCT STORE:
 
-var queue = []
-var fetching = false
-var cartInitialized = false
+  The product store is used to set a current product to the store. The "current product"
+  use case could be if you are in the product template and have a nested components that need
+  to know what product the current product is and you do not think it best practice to prop down
+  the handle sting all the way to the nested component.
 
-const queueFetch = (handle, commit) => {
-  queue.push(handle)
-  if (!fetching && cartInitialized) fetchNextProduct(commit)
-}
+**/
 
-const fetchNextProduct = commit => {
-  fetching = true
+/**
+ * Fields
+ */
+const productService = new ProductService();
 
-  if (queue.length > 0) {
-    fetchProduct(commit)
-  } else {
-    fetching = false
-  }
-}
+/**
+ * Mutation Consts
+ */
+const SET_PRODUCT = 'SET_PRORODUCT';
+const SET_HANDLE = 'SET_HANDLE';
 
-const fetchProduct = commit => {
-  let handle = queue.shift()
-  let existingProduct = state.all.find(p => p.handle === handle)
-
-  // don't fetch if this was retrieved as part of the cart products
-  if (!existingProduct) {
-    axios.get(`/products/${handle}?view=json`)
-      .then(response => {
-        let productData = parseDataForEditor(response.data)
-  
-        if (productData) commit('ADD_PRODUCT', response.data)
-        fetchNextProduct(commit)
-      })
-  } else {
-    fetchNextProduct(commit)
-  }
-}
-
+// STATE
 const state = {
-  all: []
+  currentProduct: [],
+  handle:String
 }
 
 const mutations = {
-  ADD_PRODUCT (state, product) {
-    state.all.push(parseDataForEditor(product))
+  SET_PRODUCT (state, product) {
+    state.all = product;
+  },
+  SET_HANDLE (state, handle) {
+    state.handle = handle;
   }
 }
 
 const actions = {
-  init ({ commit }) {
-    axios.get('/cart?view=json')
-      .then(response => {
-        let cartData = parseDataForEditor(response.data)
+  setProduct ({ commit }, handle) {
 
-        cartData.forEach(product => commit('ADD_PRODUCT', product))
-        cartInitialized = true
-        fetchNextProduct(commit)
+    // Check if current collection already requsted
+    if(state.handle != handle){
+
+      // Set current handle
+      commit(SET_HANDLE, handle)
+
+      // Set current collection
+      productService.getProductData(handle).then((resp)=>{
+        console.log('product resp', resp);
+        commit(SET_PRODUCT, resp.data)
       })
-  },
-  addProduct ({ state, commit }, handle) {
-    if (queue.indexOf(handle) < 0 && !state.all.find(p => p.handle === handle)) {
-      queueFetch(handle, commit)
+
     }
+
   }
 }
 

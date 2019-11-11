@@ -34,7 +34,6 @@ const mutations = {
 
 const actions = {
   init ({ commit }) {
-    console.log("init cart state");
     cartService.getCartData().then((resp) => {
       commit(SET_CHECKOUT, resp.data);
     });

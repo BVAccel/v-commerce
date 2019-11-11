@@ -1,0 +1,70 @@
+{%- capture link_dto -%}
+
+    {%- comment -%}
+
+        CREATE LIQUID JSON OBJECT
+
+        - **** liquid binding 'handle' is required ****
+        - The link list is supported to go down three layers of sub links
+        - Use the Vuex Stote to access the linklist JSON
+
+        ** View Model **
+
+        name : "",
+        links : [
+            title: "",
+            url: "",
+            sub_links: [
+                title: "",
+                url: "",
+                sub_links: [
+                    title: "",
+                    url: ""
+                ]
+            ]
+        ]
+
+    {%- endcomment -%}
+
+
+        {
+            "name":"{{linkListHandle}}",
+            "links": [
+            {%- for link in linklists[{{linkListHandle}}].links -%}
+                {
+                    "title": "{{ link.title }}",
+                    "url": "{{ link.url }}",
+                    "sub_links": [
+                    {% for sub_link in link.links %}
+                    {
+                        "title": "{{ sub_link.title }}",
+                        "url": "{{ sub_link.url }}",
+                        "sub_links": [
+                        {% for sub_sub_link in link.links %}
+                        {
+                            "title": "{{ sub_sub_link.title }}",
+                            "url": "{{ sub_sub_link.url }}"
+                        }
+                            {%- unless forloop.last -%},{%- endunless -%}
+                        {% endfor %}
+                        ]
+                    }
+                        {%- unless forloop.last -%},{%- endunless -%}
+                    {% endfor %}
+                    ]
+                }{%- unless forloop.last -%},{%- endunless -%}
+            {%- endfor -%}
+            ]
+        }
+
+{%- endcapture -%}
+
+
+{%- comment -%}
+        Deliver JSON to Vue component
+{%- endcomment -%}
+
+<link-list-dto
+    handle="{{linkListHandle}}"
+    :dto="{{link_dto | escape}}">
+</link-list-dto>

@@ -5,6 +5,7 @@ import Vuex from 'vuex'
 // modules
 import products from './modules/products'
 import collections from './modules/collections'
+import dto from './modules/dto'
 import cart from './modules/cart'
 import toast from './modules/toast'
 import scroll from './modules/scroll'
@@ -19,6 +20,7 @@ export default new Vuex.Store({
   modules: {
     products,
     collections,
+    dto,
     cart,
     toast,
     scroll,

@@ -9,6 +9,7 @@ const collectionService = new CollectionService();
  * Mutation Consts
  */
 const SET_COLLECTION = 'SET_COLLECTION';
+const SET_HANDLE = 'SET_HANDLE';
 
 // STATE
 const state = {
@@ -19,24 +20,25 @@ const state = {
 
 const mutations = {
   SET_COLLECTION (state, collection) {
-    // let index = state.all.find(c => c.id === c.id)
-    // // fetching.splice(fetching.indexOf(collection.handle), 1)
-    // if (index > -1) {
-    //   state.all.splice(index, 1, collection)
-    // } else {
-    //   state.all.push(collection)
-    // }
-  }
+   state.currentCollection = collection
+  },
+  SET_HANDLE (state, handle) {
+    state.handle = handle
+   }
 }
 
 const actions = {
   setCollection ({ commit }, handle) {
     // check if current collection already fetched
     if(state.handle != handle){
-      collectionService.getCollectionData(handle).then((resp)=>{
-        console.log('resp',resp);
-        // commit(SET_COLLECTION, response.data)
+      // set current handle
+      commit(SET_HANDLE,handle);
+
+      // set current collection
+      collectionService.getCollectionData(handle).then((response)=>{
+        commit(SET_COLLECTION, response.data)
       })
+
 
     }
   }

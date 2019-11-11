@@ -10,3 +10,7 @@ export const CartDispatch = {
 export const CollectionDispatch = {
     setCollection : 'collections/setCollection'
 }
+
+export const DtoDispatch = {
+    setLinkList : 'dto/setLinkLists'
+}

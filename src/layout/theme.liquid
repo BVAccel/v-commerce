@@ -31,6 +31,11 @@
 
     <div id="app" v-cloak>
 
+      <!-- Global Navigation DTO initiation -->
+      {%- include 'link-list-dto', linkListHandle: 'header-menu' -%}
+      {%- include 'link-list-dto', linkListHandle: 'footer' -%}
+
+
       <global-nav></global-nav>
 
       <main role="main" id="MainContent">

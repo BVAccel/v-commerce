@@ -44,12 +44,11 @@ export default {
              // get first varient for test purposes
             let handle = 'Sunglasses';
             this.$store.dispatch(CollectionDispatch.setCollection,handle);
-            console.log('checkout',this.checkout);
+
         }
     },
     created() {
-        console.log('product', this.product);
-        console.log('store', this.$store);
+
     },
 };
 </script>

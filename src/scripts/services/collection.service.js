@@ -7,17 +7,14 @@ export class CollectionService{
 
     // GET COLLECTION DATA
     getCollectionData(handle) {
-        return new Promise((resolve, reject) => {
-            const getCollection = `/collections/${handle}?view=json`;
-            $http.get(getCollection)
-                .then(function (resp) {
-                    resolve(parseDataForEditor(resp));
-                }, function (error) {
-                    reject(error);
-                });
-        })
+
+        const Url = `/collections/${handle}?view=json`;
+        return $http.get(Url)
+            .then((resp)=>{
+                return parseDataForEditor(resp);
+            }).catch((error)=>{
+                console.error(error);
+            });
     }
-
-
 
 }

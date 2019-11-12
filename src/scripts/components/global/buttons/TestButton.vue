@@ -22,7 +22,7 @@ export default {
     name: 'TestButton',
     computed: {
      ...mapState({
-        checkout: state => state.cart.checkout
+        checkout: state => state.cart.data
       }),
     },
     props: {

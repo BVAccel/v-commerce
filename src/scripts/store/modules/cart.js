@@ -10,19 +10,19 @@ const cartService = new CartService();
 /**
  * Mutation Consts
  */
-const SET_CHECKOUT = 'SET_CHECKOUT';
+const SET_DATA = 'SET_DATA';
 const OPEN_SIDECART = 'OPEN_SIDECART';
 const CLOSE_SIDECART = 'CLOSE_SIDECART';
 
 // STATE
 const state = {
-  checkout: {},
+  data: {},
   sidecartOpen: false
 }
 
 const mutations = {
-  SET_CHECKOUT (state, checkout) {
-    state.checkout = checkout
+  SET_DATA (state, data) {
+    state.data = data
   },
   OPEN_SIDECART (state) {
     state.sidecartOpen = true
@@ -35,18 +35,19 @@ const mutations = {
 const actions = {
   init ({ commit }) {
     cartService.getCartData().then((resp) => {
-      commit(SET_CHECKOUT, resp.data);
+      console.log('cart data',resp);
+      commit(SET_DATA, resp.data);
     });
   },
   addItem ({ state, commit, dispatch }, { quantity,id,properties = {} }) {
-    cartService.addItem(quantity, id, properties).then((data) => commit(SET_CHECKOUT, data));
+    cartService.addItem(quantity, id, properties).then((data) => commit(SET_DATA, data));
   },
   updateItem ({ commit }, { id, quantity }) {
-    cartService.updateItem(quantity, id).then((data) => commit(SET_CHECKOUT, data));
+    cartService.updateItem(quantity, id).then((data) => commit(SET_DATA, data));
   },
   removeItem({ commit }, id) {
     const quantity = 0;
-    cartService.changeItem(quantity, id).then((data) => commit(SET_CHECKOUT, data));
+    cartService.changeItem(quantity, id).then((data) => commit(SET_DATA, data));
   },
   openSidecart({ commit }){
     commit(OPEN_SIDECART);

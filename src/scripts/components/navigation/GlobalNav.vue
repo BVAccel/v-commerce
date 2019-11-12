@@ -41,7 +41,6 @@ export default {
   methods: {},
   created() {
     const menuHandle = 'header-menu';
-
     // Get 'Header Menu' from Vuex
     this.linkLists.forEach(element => {
       if(element.name == menuHandle){

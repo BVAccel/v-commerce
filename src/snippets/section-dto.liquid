@@ -1,0 +1,41 @@
+{%- capture section_dto -%}
+
+{%- comment -%}
+
+  CREATE LIQUID JSON OBJECT
+
+  - Use the Vuex Stote to access the section JSON
+
+  ** View Model **
+
+  name : "",
+  settings: {
+    id: value
+  },
+  blocks : [
+    {
+      type: "",
+      id: "",
+      settings: {
+        id: value
+      }
+    }
+  ]
+
+{%- endcomment -%}
+{
+  "name": "section-{{- section.id -}}",
+  "settings": {%- include 'json--section-settings' -%},
+  "blocks": {%- include 'json--section-blocks' -%}
+}
+{%- endcapture -%}
+
+
+{%- comment -%}
+  Deliver JSON to Vue component
+{%- endcomment -%}
+
+<section-dto
+  name="section-{{- section.id -}}"
+  :dto="{{- section_dto | escape -}}">
+</section-dto>

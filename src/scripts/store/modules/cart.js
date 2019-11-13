@@ -35,8 +35,7 @@ const mutations = {
 const actions = {
   init ({ commit }) {
     cartService.getCartData().then((resp) => {
-      console.log('cart data',resp);
-      commit(SET_DATA, resp.data);
+      commit(SET_DATA, resp);
     });
   },
   addItem ({ state, commit, dispatch }, { quantity,id,properties = {} }) {

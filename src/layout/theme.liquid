@@ -36,7 +36,9 @@
       {%- include 'link-list-dto', link_list_handle: 'footer' -%}
 
 
-      <global-nav></global-nav>
+      <global-nav
+        handle="header-menu">
+      </global-nav>
 
       <main role="main" id="MainContent">
         {{ content_for_layout }}

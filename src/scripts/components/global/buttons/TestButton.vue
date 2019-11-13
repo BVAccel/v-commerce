@@ -37,7 +37,6 @@ export default {
                 id: varId,
                 quantity: 1
             });
-            // this.$store.dispatch('cart/openSidecart');
         },
 
         onButtonClick2(){

@@ -5,11 +5,14 @@ import Vuex from 'vuex'
 // modules
 import products from './modules/products'
 import collections from './modules/collections'
-import dto from './modules/dto'
 import cart from './modules/cart'
 import toast from './modules/toast'
 import scroll from './modules/scroll'
 import video from './modules/video'
+
+// dto module
+import dto from './modules/dto/link-list'
+
 
 Vue.use(Vuex)
 

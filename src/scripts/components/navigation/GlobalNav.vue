@@ -2,16 +2,7 @@
 <template>
   <header>
     <nav>
-      <ul>
-        <!-- <li><a href="/">Home</a></li>
-        <li><a href="/products/blacktop">Product</a></li>
-        <li><a href="/collections/sunglasses">Collection</a></li>
-        <li><a href="/cart">Cart</a></li>
-        <li><a href="/blogs/news">Blog</a></li>
-        <li><a href="/blogs/news/protect-parties-in-the-hollywood-hills">Article</a></li>
-        <li><a href="/pages/contact-us">Page</a></li>
-        <li><a href="/search">Search</a></li>
-        <li><a href="/404">404</a></li> -->
+      <ul v-if="linkList">
         <li v-for="(link,index) in linkList.links" :key="index">
           <a :href="link.url" >{{link.title}}</a>
         </li>
@@ -22,32 +13,24 @@
 
 // Javascript
 <script>
-import { mapState } from 'vuex';
-
+import NavigationBase from 'scripts/components/navigation/NavigationBase.vue'
 
 export default {
   name: 'GlobalNav',
+  extends: NavigationBase,
   data () {
       return {
         linkList: [],
       }
   },
-  computed: {
-     ...mapState({
-        linkLists: state => state.dto.linkLists
-      }),
+  computed: {},
+  props: {
+    handle: String
   },
-  props: {},
   methods: {},
   created() {
-    const menuHandle = 'header-menu';
-    // Get 'Header Menu' from Vuex
-    this.linkLists.forEach(element => {
-      if(element.name == menuHandle){
-        this.linkList = element;
-      }
-
-    });
+    // Note: getLinkListByHandle is from base component - see NavigationBase.vue
+    this.linkList = this.getLinkListByHandle(this.handle);
   },
 };
 </script>

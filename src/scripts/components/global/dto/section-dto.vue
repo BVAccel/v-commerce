@@ -7,8 +7,8 @@
 <script>
 /**
  * Note: this component is purely a DTO component. It facilitates the liquid
- * created JSON object into the the vuew store. In this case a general link list
- * to the link list DTO VueX store.
+ * created JSON object into the the vuew store. In this case a general section
+ * to the section DTO VueX store.
  */
 
 import { DtoDispatch } from 'scripts/store/dispatch.js';

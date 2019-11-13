@@ -1,6 +1,9 @@
 <sample-section data-v-component="SampleSection"
 :settings='{{ section.settings | json }}'>
 </sample-section>
+
+{%- include 'section-dto'-%}
+
 {% schema %}
 {
   "name": "Sample Section",

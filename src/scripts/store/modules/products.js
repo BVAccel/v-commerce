@@ -19,18 +19,19 @@ const productService = new ProductService();
 /**
  * Mutation Consts
  */
-const SET_PRODUCT = 'SET_PRORODUCT';
+const SET_PRODUCT = 'SET_PRODUCT';
 const SET_HANDLE = 'SET_HANDLE';
 
 // STATE
 const state = {
-  currentProduct: [],
-  handle:String
+  currentProduct: {},
+  handle: String
 }
 
 const mutations = {
   SET_PRODUCT (state, product) {
     state.all = product;
+    state.currentProduct = product;
   },
   SET_HANDLE (state, handle) {
     state.handle = handle;
@@ -47,7 +48,8 @@ const actions = {
       commit(SET_HANDLE, handle)
 
       // Set current collection
-      productService.getProductData(handle).then((resp)=>{
+      console.log('HANDLE2', handle.handle)
+      productService.getProductData(handle.handle).then((resp)=>{
         console.log('product resp', resp);
         commit(SET_PRODUCT, resp.data)
       })

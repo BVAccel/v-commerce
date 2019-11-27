@@ -9,6 +9,7 @@ import { mapState } from 'vuex';
 import store from 'scripts/store';
 import { ucfirst, upcase, unhandleize } from 'scripts/filters/string.js';
 import { money, moneyWithoutDecimals } from 'scripts/filters/money.js';
+import { imgUrl } from 'scripts/filters/image.js';
 
 import imageConfig from 'scripts/lib/config.images.js';
 
@@ -39,6 +40,7 @@ Vue.filter('upcase', upcase);
 Vue.filter('unhandleize', unhandleize);
 Vue.filter('money', money);
 Vue.filter('moneyWithoutDecimals', moneyWithoutDecimals);
+Vue.filter('imgUrl', imgUrl);
 
 const isThemeCustomizer = window.location.href.indexOf('design_theme_id') > -1;
 const isHomePage = window.location.pathname === '/';

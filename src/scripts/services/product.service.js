@@ -8,15 +8,16 @@ export class ProductService{
     /**
      * GET PRODUCT DATA
      * @param {product handle: String} handle
-     */
+    */
     getProductData(handle) {
-        const Url = `/products/${handle}.js`;
-        return $http.get(Url)
-            .then((resp)=>{
-                return parseDataForEditor(resp);
-            }).catch((error)=>{
-                console.error(error);
-            });
+      console.log('HANDLE', handle)
+      const Url = `/products/${handle}.js`;
+      return $http.get(Url)
+      .then((resp) => {
+        console.log('resp', resp);
+        return parseDataForEditor(resp);
+      })
+      .catch((error) => console.error('[ERROR]', error));
     }
 
 

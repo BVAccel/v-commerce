@@ -15,3 +15,7 @@ export const DtoDispatch = {
   setLinkList: 'dto/setLinkLists',
   setSection: 'dto/setSection',
 };
+
+export const ProductDispatch = {
+  setProduct: 'products/setProduct',
+};

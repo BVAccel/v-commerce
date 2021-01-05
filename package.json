@@ -59,7 +59,7 @@
     "webpack-stream": "^5.2.1"
   },
   "dependencies": {
-    "axios": "^0.18.0",
+    "axios": "^0.21.1",
     "vee-validate": "^2.2.6",
     "vue": "^2.6.9",
     "vue-lazyload": "^1.2.6",
